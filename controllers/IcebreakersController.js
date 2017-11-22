@@ -35,8 +35,25 @@ IcebreakersController.Create = async function(req, resp){
   // ]
   // }
 
-  resp.send(req.body)
+  resp.redirect(`/icebreakers?secret=${icebreaker.secret}`)
 }
 
+IcebreakersController.Show = async function(req, resp){
+  const icebreaker = await Icebreaker.FindBySecret(req.query.secret)
+  const icebreakerResponses = await IcebreakerResponse.FindAllByIcebreakerID(icebreaker.id)
+
+  const question = await Question.Find(icebreaker.questionID);
+  const icebreakerURL = req.protocol + '://' + req.get('host') + req.originalUrl;
+  const siteURL = req.protocol + '://' + req.get('host');
+
+  resp.render('icebreakers/show', {
+    iceBreaker: icebreaker,
+    iceBreakerResponses: icebreakerResponses,
+    question: question,
+    icebreakerURL: icebreakerURL,
+    siteURL: siteURL
+  });
+
+}
 
 module.exports = IcebreakersController

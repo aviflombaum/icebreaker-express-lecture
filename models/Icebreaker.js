@@ -21,18 +21,32 @@ class Icebreaker{
   //   })
   // }
 
-  // static Find(id){
-  //   const sql = "SELECT * FROM icebreakers WHERE id = ?"
-  //   return new Promise(function(resolve){
-  //     db.get(sql, id, function(err, result){
-  //       const icebreaker = new icebreaker()
-  //       icebreaker.id = result.id
-  //       icebreaker.content = result.content
+  static Find(id){
+    const sql = "SELECT * FROM icebreakers WHERE id = ?"
+    return new Promise(function(resolve){
+      db.get(sql, id, function(err, result){
+        const icebreaker = new Icebreaker()
+        icebreaker.id = result.id
+        icebreaker.secret = result.secret
+        icebreaker.questionID = result.question_id
 
-  //       resolve(icebreaker)
-  //     })
-  //   })    
-  // }
+        resolve(icebreaker)
+      })
+    })    
+  }
+
+  static FindBySecret(secret){
+    const sql = "SELECT * FROM icebreakers WHERE secret = ?"
+    return new Promise(function(resolve){
+      db.get(sql, secret, function(err, result){
+        const icebreaker = new Icebreaker()
+        icebreaker.id = result.id
+        icebreaker.questionID = result.question_id
+
+        resolve(icebreaker)
+      })
+    })    
+  }
 
   static CreateTable(){
     const sql =  `CREATE TABLE IF NOT EXISTS icebreakers (

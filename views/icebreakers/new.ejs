@@ -1,7 +1,6 @@
-
-<!doctype html>
-<html lang="en">
-  <head>
+<!DOCTYPE html>
+<html>
+    <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
@@ -17,11 +16,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>    
   </head>
-
   <body>
-
     <div class="container">
-      <header class="header clearfix">
+        <header class="header clearfix">
         <nav>
           <ul class="nav nav-pills float-right">
             <li class="nav-item">
@@ -33,28 +30,27 @@
       </header>
 
       <main role="main">
-
-        <div class="jumbotron">
-          <h1 class="display-3">Break the Ice</h1>
-          <p class="lead">Instructions coming!!!</p>
-        </div>
-
         <div class="row marketing">
           <div class="col-lg-12">
-            <% questions.forEach(function(question){ %>
-            <h4><%= question.content %></h4>
-            <p><a href="/icebreakers/new?questionID=<%= question.id %>" class="btn">Make an Icebreaker with this Question</a></p>
-            <% }) %>
+            <h3>Question: <%= question.content %></h3>
+            <p>Invite people to answer this icebreaker question by entering their emails.</p>
+            <form action="/icebreakers?questionID=<%= question.id %>" method="POST">
+
+              <p><input type="email" class="form-control" name="iceBreakerEmails" placeholder="name@example.com" id="email_1"></p>
+              <p><input type="email" class="form-control" name="iceBreakerEmails" placeholder="name@example.com" id="email_2"></p>
+              <p><input type="email" class="form-control" name="iceBreakerEmails" placeholder="name@example.com" id="email_3"></p>
+              <p><input type="email" class="form-control" name="iceBreakerEmails" placeholder="name@example.com" id="email_4"></p>
+              <p style="float: left"><a href="#">Add Another Email</a></p>
+              <button type="submit" class="btn btn-primary" style="float: right">Create Your Icebreaker</button>
+            </form>
+
           </div>
-
         </div>
-
       </main>
 
       <footer class="footer">
         <p>&copy; Company 2017</p>
       </footer>
-
     </div> <!-- /container -->
   </body>
 </html>

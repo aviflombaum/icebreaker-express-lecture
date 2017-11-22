@@ -1,13 +1,13 @@
 const QuestionsController = {}
 const Question = require("../models/Question.js")
 
-QuestionsController.Index = async function(res, resp){
+QuestionsController.Index = async function(req, resp){
   const questions = await Question.All()
-  console.log(questions)
+
   resp.render("questions/index", {questions: questions})
 }
 
-QuestionsController.New = function(res, resp){
+QuestionsController.New = function(req, resp){
   resp.render("questions/new")
 }
 

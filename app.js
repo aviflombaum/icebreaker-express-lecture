@@ -8,10 +8,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Load Models
 const Question = require("./models/Question.js")
-
+const Icebreaker = require("./models/Icebreaker.js")
+const IcebreakerResponse = require("./models/IcebreakerResponse.js")
 
 async function Migrate(){
   await Question.CreateTable();
+  await Icebreaker.CreateTable();
+  await IcebreakerResponse.CreateTable();
 }
 
 Migrate();
